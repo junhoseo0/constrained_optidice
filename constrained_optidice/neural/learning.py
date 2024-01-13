@@ -50,7 +50,7 @@ class TrainingState(NamedTuple):
 
 def conditional_update(new_tensors, old_tensors, is_time):
   """Checks whether to update the params and returns the correct params."""
-  return jax.tree_multimap(lambda new, old: jax.lax.select(is_time, new, old),
+  return jax.tree_util.tree_map(lambda new, old: jax.lax.select(is_time, new, old),
                            new_tensors, old_tensors)
 
 
